@@ -21,11 +21,7 @@ const Login = () => {
 
     }
 
-    if (loading) {
-        return (<main>
-            <h1>Loading.....</h1>
-        </main>)
-    }
+    
     return (
         <>
             <main>

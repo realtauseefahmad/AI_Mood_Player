@@ -31,3 +31,21 @@ export async function login(username, email, password) {
         throw err
     }
 }
+export async function getMe() {
+    try {
+        const response = await api.get("/api/auth/get-me")
+        return response.data
+    }
+    catch (err) {
+        throw err
+    }
+}
+export async function logout() {
+    try {
+        const response = await api.get("/api/auth/logout")
+        return response.data
+    }
+    catch (err) {
+        throw err
+    }
+}

@@ -1,0 +1,22 @@
+button {
+  margin-top: 0.6rem;
+  padding: 0.9rem;
+  border-radius: 30px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: #34c38f;
+  color: #ffffff;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+
+  &:hover {
+    background: #2fb37f;
+  }
+
+  &:active {
+    transform: scale(0.87);
+  }
+}

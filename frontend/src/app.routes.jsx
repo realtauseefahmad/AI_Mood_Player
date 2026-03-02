@@ -1,18 +1,19 @@
 import { createBrowserRouter } from "react-router";
-import Login from "./features/auth/pages/Login";
 import Register from "./features/auth/pages/Register";
+import Login from "./features/auth/pages/Login";
+import Protected from "./features/auth/components/Protected";
 
 export const routes = createBrowserRouter([
     {
-        path:"/login",
-        element: <Login />
+        path: "/",
+        element: <Protected><h1>Home</h1></Protected>
     },
     {
         path:"/register",
         element: <Register />
     },
     {
-        path: "/",
-        element: <h1>welcome</h1>
-    }
+        path:"/login",
+        element: <Login />
+    },
 ])
