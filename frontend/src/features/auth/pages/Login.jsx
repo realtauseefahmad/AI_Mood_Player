@@ -4,7 +4,7 @@ import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
 import "../styles/Form.scss"
 const Login = () => {
-    const { user, loading, handleLogin } = useAuth()
+    const { handleLogin } = useAuth()
 
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -17,35 +17,46 @@ const Login = () => {
 
         await handleLogin(username, email, password)
 
-        navigate('/')
-
+        navigate('/dashboard')
     }
 
     
     return (
-        <>
-            <main>
-                <div className="form-container">
-                    <h1>Login</h1>
-                    <form onSubmit={handleSubmit} >
+        <main>
+            <div className="form-container">
+                <h1>Welcome back</h1>
+                <p className="form-subtitle">Log in to let MoodBeats match songs to your expressions.</p>
+                <form onSubmit={handleSubmit}>
+                    <div className="field">
+                        <label htmlFor="login-username">Username or Email</label>
                         <input
+                            id="login-username"
                             required
-                            onInput={(e) => { setUsername(e.target.value), setEmail(e.target.value) }}
+                            onInput={(e) => {
+                                setUsername(e.target.value)
+                                setEmail(e.target.value)
+                            }}
                             type="text"
-                            name='username' 
-                            placeholder='Enter Username or Email' />
+                            name="username"
+                            placeholder="Enter username or email"
+                        />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="login-password">Password</label>
                         <input
+                            id="login-password"
                             required
                             onInput={(e) => { setPassword(e.target.value) }}
                             type="password"
-                            name='password'
-                            placeholder='Enter password' />
-                        <button type='submit'>Login</button>
-                    </form>
-                    <p>Don't have an account? <Link className='toggleAuthForm' to="/register">Register</Link></p>
-                </div>
-            </main>
-        </>
+                            name="password"
+                            placeholder="Enter password"
+                        />
+                    </div>
+                    <button type='submit'>Login</button>
+                </form>
+                <p>Don't have an account? <Link className='toggleAuthForm' to="/register">Register</Link></p>
+            </div>
+        </main>
     )
 }
 

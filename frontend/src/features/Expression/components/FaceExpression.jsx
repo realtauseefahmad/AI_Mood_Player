@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { detect, init } from "../utils/utils";
 
-
 export default function FaceExpression({ onClick = () => { } }) {
     const videoRef = useRef(null);
     const landmarkerRef = useRef(null);
     const streamRef = useRef(null);
 
-    const [ expression, setExpression ] = useState("Detecting...");
+    const [expression, setExpression] = useState("Detecting...");
 
     useEffect(() => {
         init({ landmarkerRef, videoRef, streamRef });
@@ -26,25 +25,28 @@ export default function FaceExpression({ onClick = () => { } }) {
     }, []);
 
     async function handleClick() {
-        const expression = detect({ landmarkerRef, videoRef, setExpression })
-        console.log(expression)
-        onClick(expression)
+        const expressionResult = detect({ landmarkerRef, videoRef, setExpression });
+        if (expressionResult) {
+            onClick(expressionResult);
+        }
     }
 
-
     return (
-        <div style={{ textAlign: "center" }}>
-            <video
-                ref={videoRef}
-                style={{
-                    width: "400px",
-                    borderRadius: "12px",
-                    transform: "scaleX(-1)"  
-                }}
-                playsInline
-            />
-            <h2>{expression}</h2>
-            <button onClick={handleClick} >Detect expression</button>
+        <div className="face-expression">
+            <div className="face-expression__video-wrap">
+                <video
+                    ref={videoRef}
+                    className="face-expression__video"
+                    playsInline
+                />
+                <div className="face-expression__glass" />
+            </div>
+            <p className="face-expression__status">
+                {expression}
+            </p>
+            <button className="face-expression__button" onClick={handleClick}>
+                Detect expression
+            </button>
         </div>
     );
 }

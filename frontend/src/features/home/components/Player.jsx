@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect, useContext } from 'react'
-import { SongContext } from '../song.context'
+import React, { useRef, useState, useEffect } from 'react'
 import { useSong } from '../hook/useSong'
 import '../styles/player.scss'
 
@@ -13,7 +12,7 @@ const formatTime = (seconds) => {
 }
 
 const Player = () => {
-    const { song } = useSong()
+    const { song, handleSongEnd } = useSong()
 
     const audioRef = useRef(null)
     const progressRef = useRef(null)
@@ -94,9 +93,12 @@ const Player = () => {
         }
     }
 
-    const handleSongEnd = () => {
-        setIsPlaying(false)
-        setCurrentTime(0)
+    const onAudioEnded = () => {
+        const advanced = handleSongEnd()
+        if (!advanced) {
+            setIsPlaying(false)
+            setCurrentTime(0)
+        }
     }
 
     const progress = duration ? (currentTime / duration) * 100 : 0
@@ -110,7 +112,7 @@ const Player = () => {
                 src={song.url}
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
-                onEnded={handleSongEnd}
+                onEnded={onAudioEnded}
             />
 
             {/* Poster + Info */}

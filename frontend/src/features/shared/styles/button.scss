@@ -1,22 +1,36 @@
+@use "./variables" as *;
+
 button {
-  margin-top: 0.6rem;
-  padding: 0.9rem;
-  border-radius: 30px;
+  margin-top: $space-3;
+  padding: $space-3 $space-5;
+  border-radius: $radius-pill;
   border: none;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  background: #34c38f;
-  color: #ffffff;
+
+  background: $color-accent;
+  color: $color-bg-dark;
+
+  box-shadow: $shadow-soft;
+
   transition:
-    background 0.2s ease,
-    transform 0.1s ease;
+    background 0.25s ease,
+    transform 0.12s ease,
+    box-shadow 0.25s ease;
 
   &:hover {
-    background: #2fb37f;
+    background: lighten($color-accent, 6%);
+    box-shadow: 0 18px 35px rgba(56, 189, 248, 0.35);
   }
 
   &:active {
-    transform: scale(0.87);
+    transform: scale(0.94);
+  }
+
+  &:disabled {
+    background: $color-text-muted;
+    cursor: not-allowed;
+    opacity: 0.7;
   }
 }

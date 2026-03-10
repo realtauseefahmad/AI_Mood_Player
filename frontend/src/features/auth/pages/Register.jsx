@@ -19,33 +19,45 @@ const Register = () => {
 
         await handleRegister(username, email, password)
 
-        navigate('/login')
-
+        navigate('/dashboard')
     }
 
 
     return (
         <main>
             <div className="form-container">
-                <h1>Register</h1>
+                <h1>Create account</h1>
+                <p className="form-subtitle">Join MoodBeats and let AI soundtrack your expressions.</p>
                 <form onSubmit={handleSubmit}>
-                    <input
-                        required
-                        onInput={(e) => { setUsername(e.target.value) }}
-                        type="text"
-                        name='username'
-                        placeholder='Enter Username' />
-                    <input
-                        required
-                        onInput={(e) => { setEmail(e.target.value) }}
-                        type="email" name='email'
-                        placeholder='Enter email' />
-                    <input
-                        required
-                        onInput={(e) => { setPassword(e.target.value) }}
-                        type="password"
-                        name='password'
-                        placeholder='Enter password' />
+                    <div className="field">
+                        <label htmlFor="register-username">Username</label>
+                        <input
+                            id="register-username"
+                            required
+                            onInput={(e) => { setUsername(e.target.value) }}
+                            type="text"
+                            name='username'
+                            placeholder='Enter username' />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="register-email">Email</label>
+                        <input
+                            id="register-email"
+                            required
+                            onInput={(e) => { setEmail(e.target.value) }}
+                            type="email" name='email'
+                            placeholder='Enter email' />
+                    </div>
+                    <div className="field">
+                        <label htmlFor="register-password">Password</label>
+                        <input
+                            id="register-password"
+                            required
+                            onInput={(e) => { setPassword(e.target.value) }}
+                            type="password"
+                            name='password'
+                            placeholder='Enter password' />
+                    </div>
                     <button>Register</button>
                 </form>
 
